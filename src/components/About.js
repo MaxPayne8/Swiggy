@@ -7,7 +7,7 @@ const About = () => {
         HI!!!!!😊
       </h1>
       <h1 className="m-2  hover:cursor-pointer  hover:bg-blue-500 bg-slate-300">
-        My name is Zatin.
+        My name is Zatin,
       </h1>
       <h1 className="m-2 hover:cursor-pointer hover:bg-slate-300 bg-blue-500">
         and
