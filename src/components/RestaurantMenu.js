@@ -7,6 +7,7 @@ import ShimmerMenu from "./ShimmerMenu";
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const [resMenuCat, setResMenuCat] = useState([]);
+  const [showIndex, setShowIndex] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -48,8 +49,15 @@ const RestaurantMenu = () => {
         <h1 className="mb-2 font-semibold">Cuisines- {cuisines.join(",")}</h1>
       </div>
 
-      {resMenuCat.map((cat) => (
-        <ResMenuCat key={cat.card.card.title} data={cat} />
+      {resMenuCat.map((cat, index) => (
+        <ResMenuCat
+          key={cat.card.card.title}
+          data={cat}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => {
+            setShowIndex(index);
+          }}
+        />
       ))}
     </div>
   );

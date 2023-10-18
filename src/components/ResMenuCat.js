@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItems } from "../utils/cartSlice";
 
-const ResMenuCat = ({ data }) => {
+const ResMenuCat = ({ data, showItems, setShowIndex }) => {
   const { title } = data.card.card;
   const { itemCards } = data.card.card;
-  const [showItems, setShowItems] = useState(false);
+  const handle = () => {
+    setShowIndex();
+  };
+
   const dispatch = useDispatch();
   const handleAdd = (foodItem) => {
     dispatch(addItems(foodItem));
@@ -14,7 +17,7 @@ const ResMenuCat = ({ data }) => {
     <div>
       <div
         className="flex justify-between bg-slate-300 mb-2 h-16 hover:cursor-pointer"
-        onClick={() => setShowItems(!showItems)}
+        onClick={handle}
       >
         <h1 className="font-bold m-4">
           {title} ({itemCards.length})
@@ -23,7 +26,7 @@ const ResMenuCat = ({ data }) => {
       </div>
 
       {itemCards.map(
-        (item) =>
+        (item, index) =>
           showItems && (
             <ul>
               <div className="flex justify-between mb-2  bg-gray-200 w-2/3 ml-48 rounded-lg hover:cursor-pointer">
