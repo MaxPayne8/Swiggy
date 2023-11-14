@@ -15,7 +15,7 @@ const ShimmerMenu = () => {
   ];
   return (
     <div className="">
-      <h1 className="mt-48 text-center w-2/3 ml-48 font-semibold bg-slate-500 text-2xl rounded-lg z-10">
+      <h1 className=" my-48 w-2/3 mx-auto font-semibold bg-slate-500 text-2xl rounded-lg z-10">
         {foodFacts[Math.floor(Math.random() * 11)]}
       </h1>
     </div>

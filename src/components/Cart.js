@@ -1,13 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItems, clearCart, removeItems } from "../utils/cartSlice";
+import { clearCart, removeItem, removeItems } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+
   const dispatch = useDispatch();
-  const handleAdd = (foodItem) => {
-    dispatch(addItems(foodItem));
+
+  const remove1 = (index) => {
+    dispatch(removeItem(index));
   };
   const clear = (item) => {
     dispatch(clearCart());
@@ -17,10 +19,10 @@ const Cart = () => {
   };
   if (cartItems.length === 0) {
     return (
-      <div>
+      <div className="flex justify-center mt-48 px-4">
         <Link to="/">
           <button
-            className="ml-[500px]  mb-8 mt-36 bg-slate-400 w-[400px] rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold"
+            className="   bg-slate-400 w-[400px]  rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold"
             onClick={() => clear()}
           >
             Cart is Empty😥 , Add items now😋!!
@@ -46,9 +48,9 @@ const Cart = () => {
         </button>
       </div>
 
-      {cartItems.map((item) => (
+      {cartItems.map((item, index) => (
         <ul>
-          <div className="flex justify-between mb-2  bg-gray-200 w-2/3 ml-48 rounded-lg hover:cursor-pointer">
+          <div className="flex justify-between mb-2  bg-gray-200 w-2/3 mx-auto rounded-lg hover:cursor-pointer">
             <div>
               <li className="m-4  font-semibold">{item.card.info.name}</li>
               <li className="m-4 font-semibold">
@@ -69,10 +71,10 @@ const Cart = () => {
                 alt="dish-pic"
               />
               <button
-                className="bg-orange-500 text-black border-black border-2 relative ml-[158px] rounded-lg bottom-6  z-10 hover:bg-slate-500 "
-                onClick={() => handleAdd(item)}
+                className="bg-orange-500 text-black border-black border-2 relative ml-[160px] w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
+                onClick={() => remove1(index)}
               >
-                Add+
+                ❌
               </button>
             </div>
           </div>

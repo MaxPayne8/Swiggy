@@ -22,7 +22,7 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between bg-orange-500">
+    <div className="flex justify-between bg-orange-500 w-screen">
       <Link to="/">
         <img
           className="w-40 h-24  m-4 border-2 border-black hover:cursor-pointer rounded-full"
@@ -33,47 +33,56 @@ const Header = () => {
       <ul>
         <div className="flex">
           <li className="m-4 mt-8 font-semibold hover:cursor-pointer">
-            Network Status : {state ? "Online" : "Offline"}
+            Network Status : {state ? "Online ✅" : "Offline 🎌"}
           </li>
-          <Link to="/">
-            <li className="m-4 mt-8 font-semibold hover:cursor-pointer hover:text-slate-100">
-              Home
-            </li>
-          </Link>
-          <Link to="/about">
-            <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-              About Us
-            </li>
-          </Link>
-          <Link to="/contact">
-            {" "}
-            <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-              Contact
-            </li>
-          </Link>
-          <Link to="/cart">
-            {" "}
-            <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-              Cart ({cartItems.length})
-            </li>{" "}
-          </Link>
-          <Link to="/grocery">
-            <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-              Grocery
-            </li>
-          </Link>
+          <div className="flex flex-col md:flex-row">
+            <Link to="/">
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer hover:text-slate-100">
+                Home
+              </li>
+            </Link>
+            <Link to="/about">
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
+                About Us
+              </li>
+            </Link>
+          </div>
 
-          <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-            {loggedInUser}:
-          </li>
-          <button
-            className="bg-gray-400 w-16 h-8 mt-7 mr-2 rounded-lg border-2 border-gray-800 hover:bg-gray-500"
-            onClick={() => {
-              login === "Login" ? setLogin("Logout") : setLogin("Login");
-            }}
-          >
-            {login}
-          </button>
+          <div className="flex flex-col md:flex-row">
+            <Link to="/contact">
+              {" "}
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
+                Contact
+              </li>
+            </Link>
+            <Link to="/cart">
+              {" "}
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
+                Cart ({cartItems.length})
+              </li>{" "}
+            </Link>
+          </div>
+
+          <div className="flex flex-col md:flex-row">
+            <Link to="/grocery">
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
+                Grocery
+              </li>
+            </Link>
+            <div className="flex flex-col md:flex-row">
+              <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
+                {loggedInUser}:
+              </li>
+              <button
+                className="bg-gray-400 w-16 h-8 mt-6  mr-2 rounded-lg border-2 border-gray-800 hover:bg-gray-500"
+                onClick={() => {
+                  login === "Login" ? setLogin("Logout") : setLogin("Login");
+                }}
+              >
+                {login}
+              </button>
+            </div>
+          </div>
         </div>
       </ul>
     </div>

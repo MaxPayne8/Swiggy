@@ -28,21 +28,21 @@ const ResMenuCat = ({ data, showItems, setShowIndex }) => {
       {itemCards.map(
         (item, index) =>
           showItems && (
-            <ul>
-              <div className="flex justify-between mb-2  bg-gray-200 w-2/3 ml-48 rounded-lg hover:cursor-pointer">
+            <ul className="">
+              <div className="flex mx-auto justify-between mb-2 items-center bg-gray-200 w-auto  rounded-lg hover:cursor-pointer">
                 <div>
                   <li className="m-4  font-semibold">{item.card.info.name}</li>
                   <li className="m-4 font-semibold">
                     Rs.{item.card.info.price / 100}
                   </li>
                   <li className="m-4 font-semibold ">
-                    {item.card.info?.description}
+                    ({item.card.info?.description})
                   </li>
                 </div>
 
                 <div>
                   <img
-                    className="w-48 h-32 border-4 border-black rounded-xl mt-6 ml-2 "
+                    className="w-48 h-32 border-4 border-black rounded-xl mt-6  "
                     src={
                       "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
                       item.card.info.imageId
