@@ -22,20 +22,20 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between bg-orange-500 w-screen">
+    <div className="flex justify-between bg-orange-500 w-full md:w-full ">
       <Link to="/">
         <img
-          className="w-40 h-24  m-4 border-2 border-black hover:cursor-pointer rounded-full"
+          className="h-16 mt-10 md:mt-3  md:w-40 md:h-24  m-4 border-2 border-black hover:cursor-pointer rounded-full"
           src="https://assets.materialup.com/uploads/61d86780-be13-47fa-81a6-226aac22db27/preview.jpg "
           alt="app-icon"
         />
       </Link>
       <ul>
-        <div className="flex">
+        <div className="flex-col md:flex md:flex-row">
           <li className="m-4 mt-8 font-semibold hover:cursor-pointer">
             Network Status : {state ? "Online ✅" : "Offline 🎌"}
           </li>
-          <div className="flex flex-col md:flex-row">
+          <div className="flex ">
             <Link to="/">
               <li className="m-4 mt-8 font-semibold hover:cursor-pointer hover:text-slate-100">
                 Home
@@ -48,7 +48,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col md:flex-row">
+          <div className="flex ">
             <Link to="/contact">
               {" "}
               <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
@@ -63,13 +63,13 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col md:flex-row">
+          <div className="flex ">
             <Link to="/grocery">
               <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
                 Grocery
               </li>
             </Link>
-            <div className="flex flex-col md:flex-row">
+            <div className="flex ">
               <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
                 {loggedInUser}:
               </li>

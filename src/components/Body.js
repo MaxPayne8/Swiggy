@@ -20,11 +20,13 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.853575&lng=80.068588&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.853575&lng=80.068588&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     const mainData =
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants ||
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
     setResData(mainData);
@@ -38,7 +40,7 @@ const Body = () => {
   // console.log(searchTxt);
 
   return (
-    <div className="bg-slate-400 w-screen">
+    <div className="bg-slate-400 ">
       <div className="pt-4 mb-2 ml-3 mr-3 md:justify-between  md:flex-row flex flex-col ">
         <form
           className=" flex   "
@@ -83,7 +85,7 @@ const Body = () => {
         </div>
 
         <button
-          className="m-2 ml-2 font-semibold p-1 border-2 w-56 border-black rounded-lg h-10 hover:bg-orange-500 mr-4"
+          className="m-2 ml-2 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
           onClick={() => {
             setResData(heroData);
           }}
@@ -91,7 +93,7 @@ const Body = () => {
           All-Restaurants
         </button>
         <button
-          className="m-2 w-56 ml-2 p-1 border-2 font-semibold border-black rounded-lg h-10 hover:bg-orange-500 mr-4"
+          className="m-2 w-56 ml-2 p-1 border-2 font-semibold border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
           onClick={() => {
             filteredList.length === 0
               ? setResData(heroData)
@@ -102,7 +104,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className=" flex flex-wrap ml-3">
+      <div className=" flex flex-wrap justify-between ml-3">
         {resData.map((card) => (
           <Link key={card.info.id} to={"/restaurants/" + card.info.id}>
             <ResCard data={card} />

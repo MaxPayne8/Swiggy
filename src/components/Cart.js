@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, removeItem, removeItems } from "../utils/cartSlice";
+import {
+  addAmount,
+  addItems,
+  clearCart,
+  removeAmount,
+  removeItem,
+  removeItems,
+} from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  // const [order, setOrder] = useState(0);
   const cartItems = useSelector((store) => store.cart.items);
+  const totalItms = useSelector((store) => store.cart.numOfItems);
+
+  const totalArray = useSelector((store) => store.cart.totalAmount);
+
+  const total = totalArray.reduce((acc, el) => {
+    return acc + el;
+  }, 0);
 
   const dispatch = useDispatch();
 
+  const handleAdd = (foodItem) => {
+    dispatch(addItems(foodItem));
+
+    console.log(foodItem.card.info.price / 100);
+    if (!isNaN(foodItem.card.info.price)) {
+      dispatch(addAmount(foodItem.card.info.price / 100));
+    }
+  };
+
   const remove1 = (index) => {
     dispatch(removeItem(index));
+    dispatch(removeAmount(index));
   };
   const clear = (item) => {
     dispatch(clearCart());
@@ -22,7 +47,7 @@ const Cart = () => {
       <div className="flex justify-center mt-48 px-4">
         <Link to="/">
           <button
-            className="   bg-slate-400 w-[400px]  rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold"
+            className="   bg-slate-400 w-[300px] md:w-[400px]  rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold"
             onClick={() => clear()}
           >
             Cart is Empty😥 , Add items now😋!!
@@ -32,7 +57,7 @@ const Cart = () => {
     );
   }
   return (
-    <div>
+    <div className="w-full">
       <div className="flex justify-center mt-3">
         <button
           className="mb-8  bg-slate-400 w-24 rounded-lg border-2 border-black h-8  hover:bg-orange-500 font-semibold"
@@ -47,35 +72,52 @@ const Cart = () => {
           Remove Last Added Dish
         </button>
       </div>
+      <div className="text-center font-semibold text-xl border-2 border-black">
+        {" "}
+        Total Amount: {total}
+      </div>
 
       {cartItems.map((item, index) => (
-        <ul>
-          <div className="flex justify-between mb-2  bg-gray-200 w-2/3 mx-auto rounded-lg hover:cursor-pointer">
+        <ul className="relative">
+          <div className="flex justify-between mb-2  bg-gray-200 px-4 mx-auto rounded-lg hover:cursor-pointer">
             <div>
               <li className="m-4  font-semibold">{item.card.info.name}</li>
+
               <li className="m-4 font-semibold">
                 Rs.{item.card.info.price / 100}
               </li>
-              <li className="m-4 font-semibold ">
-                {item.card.info?.description}
+
+              <li className="m-4 font-semibold text-gray-600 w-32 md:w-auto ">
+                {item.card.info?.description
+                  ? "Description:" + item.card.info?.description
+                  : null}
               </li>
             </div>
 
             <div>
               <img
-                className="w-48 h-32 border-4 border-black rounded-xl mt-6 ml-2 "
+                className=" w-32 md:w-48 h-24 md:h-32 border-4 border-black rounded-xl mt-6 ml-2 "
                 src={
                   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
                   item.card.info.imageId
                 }
                 alt="dish-pic"
               />
-              <button
-                className="bg-orange-500 text-black border-black border-2 relative ml-[160px] w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
-                onClick={() => remove1(index)}
-              >
-                ❌
-              </button>
+
+              <div className="flex justify-evenly">
+                <button
+                  className="bg-orange-500 text-black border-black border-2 relative  w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
+                  onClick={() => remove1(index)}
+                >
+                  ❌
+                </button>
+                <button
+                  className="bg-orange-500 text-black border-black border-2 relative  w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
+                  onClick={() => handleAdd(item)}
+                >
+                  ➕
+                </button>
+              </div>
             </div>
           </div>
         </ul>
