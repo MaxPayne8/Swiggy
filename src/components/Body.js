@@ -95,7 +95,7 @@ const Body = () => {
         <button
           className="m-2 w-56 ml-2 p-1 border-2 font-semibold border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
           onClick={() => {
-            filteredList.length === 0
+            filteredList?.length === 0
               ? setResData(heroData)
               : setResData(filteredList);
           }}
