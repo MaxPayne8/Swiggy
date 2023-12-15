@@ -62,7 +62,7 @@ const ResMenuCat = ({ data }) => {
                   <img
                     className="w-32 md:w-48 h-24 md:h-32 border-4 border-black rounded-xl mt-6  "
                     src={
-                      "https://corsproxy.io/?https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+                      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
                       item.card.info.imageId
                     }
                     alt="dish-pic"
