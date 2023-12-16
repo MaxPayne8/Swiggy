@@ -27,9 +27,16 @@ const Cart = () => {
     dispatch(addItems(foodItem));
 
     console.log(foodItem.card.info.price / 100);
-    if (!isNaN(foodItem.card.info.price)) {
-      dispatch(addAmount(foodItem.card.info.price / 100));
-    }
+
+    // if (isNaN(foodItem.card.info.price)) {
+    //   dispatch(addAmount(0));
+    // }
+
+    dispatch(
+      addAmount(
+        foodItem.card.info.price / 100 || foodItem.card.info.defaultPrice / 100
+      )
+    );
   };
 
   const remove1 = (index) => {
@@ -84,7 +91,9 @@ const Cart = () => {
               <li className="m-4  font-semibold">{item.card.info.name}</li>
 
               <li className="m-4 font-semibold">
-                Rs.{item.card.info.price / 100}
+                Rs.{" "}
+                {item.card.info.price / 100 ||
+                  item.card.info.defaultPrice / 100}
               </li>
 
               <li className="m-4 font-semibold text-gray-600 w-32 md:w-auto ">

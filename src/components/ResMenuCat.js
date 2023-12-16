@@ -21,8 +21,12 @@ const ResMenuCat = ({ data }) => {
     dispatch(totalItems(items));
 
     console.log(foodItem.card.info.price / 100);
-    !isNaN(foodItem.card.info.price) &&
-      dispatch(addAmount(foodItem.card.info.price / 100));
+
+    dispatch(
+      addAmount(
+        foodItem.card.info.price / 100 || foodItem.card.info.defaultPrice / 100
+      )
+    );
   };
 
   return (
@@ -47,9 +51,9 @@ const ResMenuCat = ({ data }) => {
                     {item?.card?.info?.name}
                   </li>
                   <li className="m-4 font-semibold">
-                    {item.card.info.price
-                      ? "Rs." + item.card.info.price / 100
-                      : null}
+                    Rs.{" "}
+                    {item.card.info.price / 100 ||
+                      item.card.info.defaultPrice / 100}
                   </li>
                   <li className="m-4 font-semibold  md:w-auto text-gray-600 ">
                     {item.card.info?.description
