@@ -17,7 +17,7 @@ const RestaurantMenu = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.853575&lng=80.068588&restaurantId=" +
+      "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.853575&lng=80.068588&restaurantId=" +
         resId
     );
     const json = await data.json();
