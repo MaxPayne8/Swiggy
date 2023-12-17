@@ -55,7 +55,7 @@ const ResMenuCat = ({ data }) => {
                     {item.card.info.price / 100 ||
                       item.card.info.defaultPrice / 100}
                   </li>
-                  <li className="m-4 font-semibold  md:w-auto text-gray-600 ">
+                  <li className="m-4 font-semibold font-mono  md:w-auto text-gray-600 ">
                     {item.card.info?.description
                       ? "Description:" + item.card.info?.description
                       : null}

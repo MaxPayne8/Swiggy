@@ -80,7 +80,7 @@ const Cart = () => {
       </div>
       <div className="text-center font-semibold text-xl border-2 border-black">
         {" "}
-        Total Amount: {total}
+        Total Amount: {Math.trunc(total)}
       </div>
 
       {cartItems.map((item, index) => (
@@ -95,7 +95,7 @@ const Cart = () => {
                   item.card.info.defaultPrice / 100}
               </li>
 
-              <li className="m-4 font-semibold text-gray-600 w-32 md:w-auto ">
+              <li className="m-4 font-semibold font-mono text-gray-600 w-32 md:w-auto ">
                 {item.card.info?.description
                   ? "Description:" + item.card.info?.description
                   : null}
