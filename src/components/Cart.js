@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   // const [order, setOrder] = useState(0);
   const cartItems = useSelector((store) => store.cart.items);
-  const totalItms = useSelector((store) => store.cart.numOfItems);
 
   const totalArray = useSelector((store) => store.cart.totalAmount);
 
