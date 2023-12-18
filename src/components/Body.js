@@ -13,6 +13,7 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [heroData, setHeroData] = useState([]); //OG list of restaurants
   const [searchTxt, setSearchTxt] = useState("");
+  const [filter, setFilter] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -46,6 +47,14 @@ const Body = () => {
   if (resData.length === 0) return <Shimmer />;
   // console.log(resData);
   // console.log(searchTxt);
+  const handleClick = () => {
+    filter
+      ? setResData(heroData)
+      : filteredList?.length === 0
+      ? setResData(heroData)
+      : setResData(filteredList);
+    setFilter(!filter);
+  };
 
   return (
     <div className="bg-slate-400 ">
@@ -79,10 +88,10 @@ const Body = () => {
           </button>
         </form>
 
-        <div>
-          <h1 className="pl-16 font-bold">User-Name:</h1>
+        <div className="flex items-center">
+          {/* <h1 className="p-1 ml-2  font-bold">User-Name:</h1> */}
           <input
-            className="m-2 ml-4 p-1 pl-2 border-2 border-black rounded-lg"
+            className="m-2 ml-4  p-1  border-2 h-10 w-56 border-black rounded-lg"
             type="text"
             placeholder="Enter your login name"
             value={loggedInUser}
@@ -93,22 +102,10 @@ const Body = () => {
         </div>
 
         <button
-          className="m-2 ml-2 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
-          onClick={() => {
-            setResData(heroData);
-          }}
+          className="m-2 ml-4 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
+          onClick={() => handleClick()}
         >
-          All-Restaurants
-        </button>
-        <button
-          className="m-2 w-56 ml-2 p-1 border-2 font-semibold border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
-          onClick={() => {
-            filteredList?.length === 0
-              ? setResData(heroData)
-              : setResData(filteredList);
-          }}
-        >
-          Top-Rated-Restaurants
+          {!filter ? <h1>Top-Rated</h1> : <h1>All Restaurant</h1>}
         </button>
       </div>
 

@@ -47,7 +47,7 @@ const ResMenuCat = ({ data }) => {
             <ul className="">
               <div className="flex mx-auto justify-between mb-2 px-4 items-center bg-gray-200 w-auto  rounded-lg hover:cursor-pointer">
                 <div>
-                  <li className="m-4  font-semibold">
+                  <li className="m-4  font-semibold w-32 md:w-auto">
                     {item?.card?.info?.name}
                   </li>
                   <li className="m-4 font-semibold">
@@ -55,7 +55,7 @@ const ResMenuCat = ({ data }) => {
                     {item.card.info.price / 100 ||
                       item.card.info.defaultPrice / 100}
                   </li>
-                  <li className="m-4 font-semibold font-mono  md:w-auto text-gray-600 ">
+                  <li className="m-4 font-semibold font-mono w-32 md:w-auto text-gray-600 ">
                     {item.card.info?.description
                       ? "Description:" + item.card.info?.description
                       : null}

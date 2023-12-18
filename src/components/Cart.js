@@ -9,8 +9,11 @@ import {
   removeItems,
 } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  let navigate = useNavigate();
+
   // const [order, setOrder] = useState(0);
   const cartItems = useSelector((store) => store.cart.items);
 
@@ -66,16 +69,22 @@ const Cart = () => {
     <div className="w-full">
       <div className="flex justify-center mt-3">
         <button
-          className="mb-8  bg-slate-400 w-24 rounded-lg border-2 border-black h-8  hover:bg-orange-500 font-semibold"
+          className="mb-8  bg-slate-400 w-24 rounded-lg border-2 border-black   hover:bg-orange-500 font-semibold"
           onClick={() => clear()}
         >
           Clear Cart
         </button>
         <button
-          className=" mb-8 h-8 bg-slate-400 w-[250px] rounded-lg border-2 border-black ml-4 hover:bg-orange-500 font-semibold"
+          className=" mb-8  bg-slate-400 w-[250px] rounded-lg border-2 border-black ml-4 hover:bg-orange-500 font-semibold"
           onClick={() => remove()}
         >
           Remove Last Added Dish
+        </button>
+        <button
+          className=" mb-8  bg-slate-400 w-[100px] rounded-lg border-2 border-black ml-4 hover:bg-orange-500 font-semibold"
+          onClick={() => navigate(-1)}
+        >
+          Go back
         </button>
       </div>
       <div className="text-center font-semibold text-xl border-2 border-black">
@@ -87,7 +96,9 @@ const Cart = () => {
         <ul className="relative">
           <div className="flex justify-between mb-2  bg-gray-200 px-4 mx-auto rounded-lg hover:cursor-pointer">
             <div>
-              <li className="m-4  font-semibold">{item.card.info.name}</li>
+              <li className="m-4 w-32 md:w-auto font-semibold">
+                {item.card.info.name}
+              </li>
 
               <li className="m-4 font-semibold">
                 Rs.{" "}
@@ -95,11 +106,13 @@ const Cart = () => {
                   item.card.info.defaultPrice / 100}
               </li>
 
-              <li className="m-4 font-semibold font-mono text-gray-600 w-32 md:w-auto ">
-                {item.card.info?.description
-                  ? "Description:" + item.card.info?.description
-                  : null}
-              </li>
+              {
+                // <li className="m-4 font-semibold font-mono text-gray-600 w-32 md:w-auto ">
+                //   {item.card.info?.description
+                //     ? "Description: " + item.card.info?.description
+                //     : null}
+                // </li>
+              }
             </div>
 
             <div>
