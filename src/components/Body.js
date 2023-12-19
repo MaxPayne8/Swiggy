@@ -57,7 +57,7 @@ const Body = () => {
   };
 
   return (
-    <div className="bg-slate-400 ">
+    <div className="bg-slate-200 ">
       <div className="pt-4 mb-2 ml-3 mr-3 md:justify-between  md:flex-row flex flex-col ">
         <form
           className=" flex   "
