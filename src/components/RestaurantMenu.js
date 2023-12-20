@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
             res?.card?.["card"]?.["@type"] ===
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
         ) ||
-        json?.data?.cards[2]?.groupedCard?.cardGroupMap.REGULAR.cards.filter(
+        json?.data?.cards[4]?.groupedCard?.cardGroupMap.REGULAR.cards.filter(
           (res) =>
             res?.card?.["card"]?.["@type"] ===
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -88,6 +88,12 @@ const RestaurantMenu = () => {
           // }}
         />
       ))}
+      <button
+        onClick={() => window.scrollTo(0, 0)}
+        className="px-3 relative flex justify-center  rounded-lg mx-auto  text-white bg-violet-700 font-semibold hover:bg-violet-900  mt-1"
+      >
+        TOP
+      </button>
     </div>
   );
 };

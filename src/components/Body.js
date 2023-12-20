@@ -47,13 +47,11 @@ const Body = () => {
   if (resData.length === 0) return <Shimmer />;
   // console.log(resData);
   // console.log(searchTxt);
-  const handleClick = () => {
-    filter
-      ? setResData(heroData)
-      : filteredList?.length === 0
-      ? setResData(heroData)
-      : setResData(filteredList);
-    setFilter(!filter);
+  const handleClickTop = () => {
+    setResData(filteredList);
+  };
+  const handleClickAll = () => {
+    setResData(heroData);
   };
 
   return (
@@ -80,13 +78,27 @@ const Body = () => {
               const searchedRest = resData.filter((res) =>
                 res.info.name.toLowerCase().includes(searchTxt.toLowerCase())
               );
-              setResData(searchedRest);
+              searchedRest?.length
+                ? setResData(searchedRest)
+                : setResData(heroData);
               setSearchTxt("");
             }}
           >
             🔍
           </button>
         </form>
+        <button
+          className="m-2 ml-4 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
+          onClick={() => handleClickAll()}
+        >
+          All Restaurants
+        </button>
+        <button
+          className="m-2 ml-4 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
+          onClick={() => handleClickTop()}
+        >
+          Top-Rated
+        </button>
 
         <div className="flex items-center">
           {/* <h1 className="p-1 ml-2  font-bold">User-Name:</h1> */}
@@ -100,13 +112,6 @@ const Body = () => {
             }}
           />
         </div>
-
-        <button
-          className="m-2 ml-4 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
-          onClick={() => handleClick()}
-        >
-          {!filter ? <h1>Top-Rated</h1> : <h1>All Restaurant</h1>}
-        </button>
       </div>
 
       <div className=" flex flex-wrap justify-between ml-3">
@@ -116,6 +121,12 @@ const Body = () => {
           </Link>
         ))}
       </div>
+      <button
+        onClick={() => window.scrollTo(0, 0)}
+        className="px-3 relative flex justify-center  rounded-lg mx-auto  text-white bg-violet-700 font-semibold hover:bg-violet-900  mt-1"
+      >
+        TOP
+      </button>
     </div>
   );
 };
