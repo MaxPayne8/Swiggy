@@ -4,6 +4,7 @@ import Body from "./components/Body";
 import { useState } from "react";
 import UserContext from "./utils/userContext";
 import { Outlet, createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 import About from "./components/About";
 import Contacts from "./components/Contacts";
@@ -12,9 +13,12 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import appStore from "./utils/appStore";
 import { Provider } from "react-redux";
 import Grocery from "./components/Grocery";
+import Shimmer from "./components/Shimmer";
 
 const App = () => {
   const [userName, setUserName] = useState("");
+
+  const grocery = lazy(() => import("./components/Grocery"));
 
   return (
     <div>
@@ -55,7 +59,11 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "/grocery",
-        element: <Grocery />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
+        ),
       },
     ],
   },
