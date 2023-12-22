@@ -42,7 +42,7 @@ const Body = () => {
     setHeroData(mainData);
     dispatch(addAllRest(mainData));
 
-    setFilteredList(mainData.filter((res) => res.info.avgRating > 4));
+    setFilteredList(mainData.filter((res) => res.info.avgRating > 4.2));
   };
   if (resData.length === 0) return <Shimmer />;
   // console.log(resData);
