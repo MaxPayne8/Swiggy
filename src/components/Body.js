@@ -60,41 +60,68 @@ const Body = () => {
     if (filterItem === "Cuisines and Food") {
       setResData(heroData);
     } else if (filterItem === "South Indian") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "North Indian") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Chinese") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Desserts") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Burgers") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Pastas") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Biryani") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Beverages") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     } else if (filterItem === "Ice Cream") {
-      setResData(
-        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
-      );
+      heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+        ?.length
+        ? setResData(
+            heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+          )
+        : setResData(heroData);
     }
   };
 
@@ -145,7 +172,6 @@ const Body = () => {
         </button>
 
         <div className="flex items-center">
-          {/* <h1 className="p-1 ml-2  font-bold">User-Name:</h1> */}
           <input
             className="m-2 ml-4  p-1  border-2 h-10 w-56 border-black rounded-lg"
             type="text"
