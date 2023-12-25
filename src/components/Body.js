@@ -45,13 +45,57 @@ const Body = () => {
     setFilteredList(mainData.filter((res) => res.info.avgRating > 4.2));
   };
   if (resData.length === 0) return <Shimmer />;
-  // console.log(resData);
+  console.log(resData);
   // console.log(searchTxt);
   const handleClickTop = () => {
     setResData(filteredList);
   };
   const handleClickAll = () => {
     setResData(heroData);
+  };
+
+  const filterProducts = (e) => {
+    const filterItem = e.target.value;
+
+    if (filterItem === "Cuisines and Food") {
+      setResData(heroData);
+    } else if (filterItem === "South Indian") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "North Indian") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Chinese") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Desserts") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Burgers") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Pastas") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Biryani") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Beverages") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    } else if (filterItem === "Ice Cream") {
+      setResData(
+        heroData?.filter((item) => item.info.cuisines.includes(filterItem))
+      );
+    }
   };
 
   return (
@@ -75,7 +119,7 @@ const Body = () => {
           <button
             className="m-2 ml-2 p-1 border-2 h-10 border-black rounded-lg w-8 hover:bg-orange-500"
             onClick={() => {
-              const searchedRest = resData.filter((res) =>
+              const searchedRest = heroData.filter((res) =>
                 res.info.name.toLowerCase().includes(searchTxt.toLowerCase())
               );
               searchedRest?.length
@@ -97,7 +141,7 @@ const Body = () => {
           className="m-2 ml-4 font-semibold p-1 border-2 w-56 border-black rounded-lg h-auto hover:bg-orange-500 mr-4"
           onClick={() => handleClickTop()}
         >
-          Top-Rated
+          Top-Rated({">"}4.2⭐)
         </button>
 
         <div className="flex items-center">
@@ -112,6 +156,26 @@ const Body = () => {
             }}
           />
         </div>
+      </div>
+
+      <div className="flex flex-col  sm:justify-center   justify-between sm:flex-row ">
+        <select
+          className="hover:cursor-pointer  m-2 mx-8  font-semibold w-56 p-1 border-2 text-white bg-blue-700   border-black rounded-lg h-auto hover:bg-orange-500 "
+          onChange={(e) => filterProducts(e)}
+        >
+          <option value="Cuisines and Food"> Cuisines and Food </option>
+          <option value="South Indian"> South Indian</option>
+          <option value="North Indian"> North Indian</option>
+          <option value="Chinese"> Chinese</option>
+
+          <option value="Desserts"> Desserts </option>
+          <option value="Burgers"> Burgers</option>
+          <option value="Pastas"> Pastas </option>
+          <option value="Biryani"> Biryani</option>
+
+          <option value="Beverages"> Beverages</option>
+          <option value="Ice Cream"> Ice Cream</option>
+        </select>
       </div>
 
       <div className=" flex flex-wrap justify-between ml-3">
