@@ -66,7 +66,7 @@ const Cart = () => {
     );
   }
   return (
-    <div className="w-full">
+    <div className="">
       <div className="flex justify-center mt-3">
         <button
           className="mb-8  bg-slate-400 w-24 rounded-lg border-2 border-black   hover:bg-orange-500 font-semibold"
@@ -92,57 +92,50 @@ const Cart = () => {
         Total Amount: {Math.trunc(total)}
       </div>
 
-      {cartItems.map((item, index) => (
-        <ul className="relative">
-          <div className="flex justify-between mb-2  bg-gray-200 px-4 mx-auto rounded-lg hover:cursor-pointer">
-            <div>
-              <li className="m-4 w-32 md:w-auto font-semibold">
-                {item.card.info.name}
-              </li>
+      <div className="flex flex-wrap justify-center">
+        {cartItems.map((item, index) => (
+          <ul className=" m-2 p-2 ">
+            <div className=" w-[300px] mb-2  bg-gray-200 px-4  rounded-lg hover:cursor-pointer">
+              <div>
+                <li className="m-4 w-32 md:w-auto font-semibold">
+                  {item.card.info.name}
+                </li>
 
-              <li className="m-4 font-semibold">
-                Rs.{" "}
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}
-              </li>
+                <li className="m-4 font-semibold">
+                  Rs.{" "}
+                  {item.card.info.price / 100 ||
+                    item.card.info.defaultPrice / 100}
+                </li>
+              </div>
 
-              {
-                // <li className="m-4 font-semibold font-mono text-gray-600 w-32 md:w-auto ">
-                //   {item.card.info?.description
-                //     ? "Description: " + item.card.info?.description
-                //     : null}
-                // </li>
-              }
-            </div>
+              <div className="relative flex justify-center  mx-auto">
+                <img
+                  className=" w-32 md:w-48  h-24 md:h-32 border-4 border-black rounded-xl mt-6 ml-2 "
+                  src={
+                    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+                    item.card.info.imageId
+                  }
+                  alt="dish-pic"
+                />
 
-            <div>
-              <img
-                className=" w-32 md:w-48 h-24 md:h-32 border-4 border-black rounded-xl mt-6 ml-2 "
-                src={
-                  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-                  item.card.info.imageId
-                }
-                alt="dish-pic"
-              />
-
-              <div className="flex justify-evenly">
                 <button
-                  className="bg-orange-500 text-black border-black border-2 relative  w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
+                  className="bg-orange-500 text-black left-12 md:left-5 bottom-0 h-8 border-black border-2 absolute  w-10 rounded-lg   z-10 hover:bg-slate-500 "
                   onClick={() => remove1(index)}
                 >
                   ❌
                 </button>
                 <button
-                  className="bg-orange-500 text-black border-black border-2 relative  w-10 rounded-lg bottom-6  z-10 hover:bg-slate-500 "
+                  className="bg-orange-500 text-black border-black border-2 absolute h-8  w-10 rounded-lg bottom-0 right-10 md:right-5 z-10 hover:bg-slate-500 "
                   onClick={() => handleAdd(item)}
                 >
                   ➕
                 </button>
               </div>
             </div>
-          </div>
-        </ul>
-      ))}
+          </ul>
+        ))}
+      </div>
+
       <button
         onClick={() => window.scrollTo(0, 0)}
         className="px-3 relative flex justify-center  rounded-lg mx-auto  text-white bg-violet-700 font-semibold hover:bg-violet-900  mt-1"

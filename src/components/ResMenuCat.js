@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAmount, addItems, totalItems } from "../utils/cartSlice";
 
 const ResMenuCat = ({ data }) => {
@@ -10,11 +10,13 @@ const ResMenuCat = ({ data }) => {
     setShowItems(!showItems);
   };
 
-  // const [totalAmount, setTotalAmount] = useState(0);
-
   const [items, setItems] = useState(0);
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const totalArray = useSelector((store) => store.cart.totalAmount);
+
   const handleAdd = (foodItem) => {
     dispatch(addItems(foodItem));
     setItems(items + 1);
