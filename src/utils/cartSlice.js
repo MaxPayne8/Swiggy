@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-  initialState: { items: [], index: null, totalAmount: [], numOfItems: 0 },
+  initialState: {
+    items: [],
+    index: null,
+    totalAmount: [],
+    numOfItems: [],
+    warning: false,
+    amountIndex: null,
+  },
   name: "cart",
   reducers: {
     addItems: (state, action) => {
@@ -11,26 +18,42 @@ const cartSlice = createSlice({
     addAmount: (state, action) => {
       state.totalAmount.push(action.payload);
     },
+    addAmntIndex: (state, action) => {
+      state.amountIndex = action.payload;
+    },
+
+    addAmountIndex: (state, action) => {
+      state.totalAmount[state.amountIndex] += action.payload;
+    },
 
     removeItems: (state, action) => {
-      state.items.pop();
-      state.totalAmount.pop();
+      if (state.numOfItems[action.payload] === 1) {
+        state.numOfItems.splice(action.payload, 1);
+        state.items.splice(action.payload, 1);
+      } else {
+        state.numOfItems[action.payload]--;
+      }
     },
 
     clearCart: (state) => {
       state.items.length = 0;
       state.totalAmount.length = 0;
+      state.numOfItems.length = 0;
     },
-    removeItem: (state, action) => {
-      const id = action.payload;
-      state.items.splice(id, 1);
-    },
+
     removeAmount: (state, action) => {
-      const id = action.payload;
-      state.totalAmount.splice(id, 1);
+      if (state.totalAmount[state.amountIndex] === Math.floor(action.payload)) {
+        state.totalAmount.splice(state.amountIndex, 1);
+      } else state.totalAmount[state.amountIndex] -= action.payload;
     },
     totalItems: (state, action) => {
-      state.numOfItems = action.payload;
+      state.numOfItems.push(action.payload);
+    },
+    addWarning: (state, action) => {
+      state.warning = action.payload;
+    },
+    addTotalItems: (state, action) => {
+      state.numOfItems[action.payload]++;
     },
   },
 });
@@ -39,9 +62,13 @@ export const {
   addItems,
   removeItems,
   clearCart,
-  removeItem,
+
   addAmount,
   removeAmount,
   totalItems,
+  addWarning,
+  addTotalItems,
+  addAmntIndex,
+  addAmountIndex,
 } = cartSlice.actions;
 export default cartSlice.reducer;

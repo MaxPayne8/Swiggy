@@ -1,6 +1,11 @@
 import React, { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAmount, addItems, totalItems } from "../utils/cartSlice";
+import {
+  addAmount,
+  addItems,
+  addWarning,
+  totalItems,
+} from "../utils/cartSlice";
 
 const ResMenuCat = ({ data }) => {
   const [showItems, setShowItems] = useState(false);
@@ -10,7 +15,7 @@ const ResMenuCat = ({ data }) => {
     setShowItems(!showItems);
   };
 
-  const [items, setItems] = useState(0);
+  // const [items, setItems] = useState(0);
 
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
@@ -18,17 +23,27 @@ const ResMenuCat = ({ data }) => {
   const totalArray = useSelector((store) => store.cart.totalAmount);
 
   const handleAdd = (foodItem) => {
-    dispatch(addItems(foodItem));
-    setItems(items + 1);
-    dispatch(totalItems(items));
-
-    console.log(foodItem.card.info.price / 100);
-
-    dispatch(
-      addAmount(
-        foodItem.card.info.price / 100 || foodItem.card.info.defaultPrice / 100
-      )
+    const check = cartItems?.filter(
+      (item) => item.card.info.id === foodItem.card.info.id
     );
+    const check1 = check?.length;
+    if (!check1) {
+      dispatch(addItems(foodItem));
+      // setItems(items + 1);
+      dispatch(totalItems(1));
+
+      console.log(foodItem.card.info.price / 100);
+
+      dispatch(
+        addAmount(
+          foodItem.card.info.price / 100 ||
+            foodItem.card.info.defaultPrice / 100
+        )
+      );
+    } else {
+      dispatch(addWarning(true));
+      setTimeout(() => dispatch(addWarning(false)), 1000);
+    }
   };
 
   return (

@@ -3,11 +3,13 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import ResMenuCat from "./ResMenuCat";
 import ShimmerMenu from "./ShimmerMenu";
+import { useSelector } from "react-redux";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const [resMenuCat, setResMenuCat] = useState([]);
-  // const [showIndex, setShowIndex] = useState(0);
+
+  const { warning } = useSelector((store) => store.cart);
 
   useEffect(() => {
     fetchData();
@@ -61,8 +63,6 @@ const RestaurantMenu = () => {
   };
 
   if (resInfo === null) return <ShimmerMenu />;
-  // const { itemCards } =
-  // resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap.REGULAR.cards;
   console.log(resInfo);
   console.log(resMenuCat);
   const { name, costForTwo, cuisines } =
@@ -71,7 +71,12 @@ const RestaurantMenu = () => {
     resInfo?.data?.cards[2]?.card?.card?.info;
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      {warning && (
+        <div className="fixed text-white  top-0 right-0 border-2 border-white z-20  rounded-lg p-2 bg-blue-600">
+          ➡➡ Item already in cart!!⬅⬅
+        </div>
+      )}
       <div className="text-center bg-gray-300">
         <h1 className="mb-2 text-4xl font-bold">{name}</h1>
         <p className="mb-2 font-semibold">Cost for two- {costForTwo / 100}</p>
@@ -79,14 +84,7 @@ const RestaurantMenu = () => {
       </div>
 
       {resMenuCat?.map((cat, index) => (
-        <ResMenuCat
-          key={cat.card.card.title}
-          data={cat}
-          // showItems={index === showIndex ? true : false}
-          // setShowIndex={() => {
-          //   setShowIndex(index);
-          // }}
-        />
+        <ResMenuCat key={cat.card.card.title} data={cat} />
       ))}
       <button
         onClick={() => window.scrollTo(0, 0)}

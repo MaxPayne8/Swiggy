@@ -20,6 +20,10 @@ const Header = () => {
   };
   const state = useOnlineStatus();
   const cartItems = useSelector((store) => store.cart.items);
+  const totalItemsArr = useSelector((store) => store.cart.numOfItems);
+  console.log(totalItemsArr);
+  const totalItems = totalItemsArr.reduce((item, acc) => item + acc, 0);
+  console.log(totalItems);
 
   return (
     <div className="flex justify-between bg-orange-500 w-full md:w-full ">
@@ -58,7 +62,7 @@ const Header = () => {
             <Link to="/cart">
               {" "}
               <li className="m-4 mt-8 font-semibold hover:cursor-pointer  hover:text-slate-100">
-                Cart ({cartItems.length})
+                Cart ({totalItems})
               </li>{" "}
             </Link>
           </div>
