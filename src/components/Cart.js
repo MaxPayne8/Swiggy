@@ -122,7 +122,7 @@ const Cart = () => {
                   className="bg-orange-500 text-black left-12 md:left-7 bottom-0 h-8 border-black border-2 absolute  w-10 rounded-lg   z-10 hover:bg-slate-500 "
                   onClick={() => remove1(item, index)}
                 >
-                  ❌
+                  ➖
                 </button>
                 <span className="absolute h-6 rounded border-black border-2 bottom-0  text-center w-10 bg-blue-500 text-white ">
                   {itemsArr[index]}
