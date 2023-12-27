@@ -75,6 +75,8 @@ const RestaurantMenu = () => {
   const showToastMessage = () => {
     toast.info("Item already in cart !", {
       position: toast.POSITION.TOP_RIGHT,
+      autoClose: 500,
+      hideProgressBar: true,
     });
   };
   if (warning) showToastMessage();

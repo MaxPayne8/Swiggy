@@ -29,6 +29,8 @@ const Cart = () => {
   const showToastMessage = () => {
     toast.error("Max Limit Reached!", {
       position: toast.POSITION.TOP_RIGHT,
+      autoClose: 500,
+      hideProgressBar: true,
     });
   };
 
