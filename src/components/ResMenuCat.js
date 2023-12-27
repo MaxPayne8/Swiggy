@@ -20,8 +20,6 @@ const ResMenuCat = ({ data }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
 
-  const totalArray = useSelector((store) => store.cart.totalAmount);
-
   const handleAdd = (foodItem) => {
     const check = cartItems?.filter(
       (item) => item.card.info.id === foodItem.card.info.id

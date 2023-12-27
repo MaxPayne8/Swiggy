@@ -52,7 +52,7 @@ const Cart = () => {
       )
     );
   };
-  const clear = (item) => {
+  const clear = () => {
     dispatch(clearCart());
   };
 
@@ -60,10 +60,7 @@ const Cart = () => {
     return (
       <div className="flex justify-center mt-48 px-4">
         <Link to="/">
-          <button
-            className="   bg-slate-400 w-[300px] md:w-[400px]  rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold"
-            onClick={() => clear()}
-          >
+          <button className="   bg-slate-400 w-[300px] md:w-[400px]  rounded-lg border-2 border-black h-16 hover:bg-orange-500 font-semibold">
             Cart is Empty😥 , Add items now😋!!
           </button>
         </Link>
