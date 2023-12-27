@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import ResMenuCat from "./ResMenuCat";
 import ShimmerMenu from "./ShimmerMenu";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -70,13 +72,21 @@ const RestaurantMenu = () => {
     resInfo?.data?.cards[1]?.card?.card?.info ||
     resInfo?.data?.cards[2]?.card?.card?.info;
 
+  const showToastMessage = () => {
+    toast.info("Item already in cart !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+  if (warning) showToastMessage();
+
   return (
     <div className="w-full relative">
-      {warning && (
+      {/* {warning && (
         <div className="fixed text-white  top-0 right-0 border-2 border-white z-20  rounded-lg p-2 bg-blue-600">
           ➡➡ Item already in cart!!⬅⬅
         </div>
-      )}
+      )} */}
+      {warning && <ToastContainer />}
       <div className="text-center bg-gray-300">
         <h1 className="mb-2 text-4xl font-bold">{name}</h1>
         <p className="mb-2 font-semibold">Cost for two- {costForTwo / 100}</p>

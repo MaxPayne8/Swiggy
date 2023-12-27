@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addAmntIndex,
-  addAmount,
   addAmountIndex,
-  addItems,
   addTotalItems,
   clearCart,
   removeAmount,
-  removeItem,
   removeItems,
 } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   let navigate = useNavigate();
 
-  // const [order, setOrder] = useState(0);
   const cartItems = useSelector((store) => store.cart.items);
 
   const totalArray = useSelector((store) => store.cart.totalAmount);
@@ -28,18 +26,28 @@ const Cart = () => {
 
   const dispatch = useDispatch();
   const itemsArr = useSelector((store) => store.cart.numOfItems);
+  const showToastMessage = () => {
+    toast.error("Max Limit Reached!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleAdd = (foodItem, index) => {
-    dispatch(addTotalItems(index));
+    if (itemsArr[index] >= 5) {
+      showToastMessage();
+    } else {
+      dispatch(addTotalItems(index));
 
-    console.log(foodItem.card.info.price / 100);
+      console.log(foodItem.card.info.price / 100);
 
-    dispatch(addAmntIndex(index));
-    dispatch(
-      addAmountIndex(
-        foodItem.card.info.price / 100 || foodItem.card.info.defaultPrice / 100
-      )
-    );
+      dispatch(addAmntIndex(index));
+      dispatch(
+        addAmountIndex(
+          foodItem.card.info.price / 100 ||
+            foodItem.card.info.defaultPrice / 100
+        )
+      );
+    }
   };
 
   const remove1 = (foodItem, index) => {
@@ -69,6 +77,7 @@ const Cart = () => {
   }
   return (
     <div className="">
+      <ToastContainer />
       <div className="flex justify-center mt-3">
         <button
           className="mb-8  bg-slate-400 w-24 rounded-lg border-2 border-black   hover:bg-orange-500 font-semibold"
