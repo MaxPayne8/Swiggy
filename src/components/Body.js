@@ -127,7 +127,7 @@ const Body = () => {
 
   return (
     <div className="bg-slate-200 ">
-      <div className="pt-4 mb-2 ml-3 mr-3 md:justify-between  md:flex-row flex flex-col ">
+      <div className="pt-4 mb-2  justify-center mx-auto  md:flex-row flex flex-col ">
         <form
           className=" flex   "
           onSubmit={(e) => {
@@ -186,7 +186,7 @@ const Body = () => {
 
       <div className="flex flex-col  sm:justify-center   justify-between sm:flex-row ">
         <select
-          className="hover:cursor-pointer  m-2 mx-8  font-semibold w-56 p-1 border-2 text-white bg-blue-700   border-black rounded-lg h-auto hover:bg-orange-500 "
+          className="hover:cursor-pointer  mx-4  font-semibold w-56 p-1 border-2 text-white bg-blue-700   border-black rounded-lg h-auto hover:bg-orange-500 "
           onChange={(e) => filterProducts(e)}
         >
           <option value="Cuisines and Food"> Cuisines and Food </option>
@@ -204,7 +204,7 @@ const Body = () => {
         </select>
       </div>
 
-      <div className=" flex flex-wrap justify-between ml-3">
+      <div className=" flex flex-wrap justify-normal md:justify-evenly">
         {resData.map((card) => (
           <Link key={card.info.id} to={"/restaurants/" + card.info.id}>
             <ResCard data={card} />
