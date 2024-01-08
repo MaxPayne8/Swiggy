@@ -211,12 +211,7 @@ const Body = () => {
           </Link>
         ))}
       </div>
-      <button
-        onClick={() => window.scrollTo(0, 0)}
-        className="px-3 relative flex justify-center  rounded-lg mx-auto  text-white bg-violet-700 font-semibold hover:bg-violet-900  mt-1"
-      >
-        TOP
-      </button>
+      
     </div>
   );
 };
